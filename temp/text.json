@@ -1,0 +1,23 @@
+{
+    "title": "json_example",
+    "house" : {
+        "json_string": "string_example",
+        "json_number": 100,
+        "json_array": [1, 2, 3, 4, 5],
+        "json_object": { "name":"John", "age":30},
+        "json_bool": true
+    },
+    "house1" : {
+        "json_string": "string_example",
+        "json_number": 100,
+        "json_array": [1, 2, 3, 4, 5],
+        "json_object": { "name":"John", "age":30},
+        "json_bool": true
+    },
+    "한글" : "그럴겁니다",
+    "persons": [
+        { "name": "erik", "age": 38 },
+        { "name": "john", "age": 45 },
+        { "name": "rob", "age": 14 }
+    ]
+}
