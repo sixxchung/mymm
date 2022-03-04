@@ -1,3 +1,9 @@
+import copy
+import os
+import os.path as osp
+
+ROOT_DIR = '/home/oschung_skcc/git'
+WORK_DIR = osp.join(ROOT_DIR, 'mymm/kitty_tiny')
 # $ pwd
 # /home/oschung_skcc/git/mmdetection/my/kitty_tiny
 # $ python tools/sixx_train.py configs/faster_rcnn_r50_fpn_1x_tidy.py 
@@ -6,9 +12,6 @@ import sixx_middle_dataset
 # -----------------------------------------------------------------------------
 # Copyright (c) OpenMMLab. All rights reserved.
 import argparse
-import copy
-import os
-import os.path as osp
 import time
 import warnings
 

@@ -1,15 +1,20 @@
-ROOT_DIR = '/home/oschung_skcc/git/'
-
 import copy
 import os
 import os.path as osp
 
-DATA_ROOT  = osp.join(ROOT_DIR, 'my')
-IMG_PREFIX = 'kitty_tiny/data/image_2' 
+ROOT_DIR = '/home/oschung_skcc/git'
+WORK_DIR = osp.join(ROOT_DIR, 'mymm/kitty_tiny')
+DATA_ROOT= osp.join(WORK_DIR, 'data')
+
+IMG_PREFIX = 'image_2' 
 ANN_PREFIX = IMG_PREFIX.replace('image_2', 'label_2')
 
+import sys
+#sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append('/home/oschung_skcc/git/mmdetection')
 from mmdet.datasets.builder import DATASETS
 from mmdet.datasets.custom import CustomDataset
+
 import mmcv
 import cv2
 import numpy as np

@@ -230,5 +230,5 @@ opencv_num_threads = 0
 mp_start_method = 'fork'
 work_dir = '/home/oschung_skcc/git/mymm/kitty_tiny/tutorial_exps'
 seed = 0
-gpu_ids = range(0, 1)
-
+gpu_ids = [0]
+auto_resume = False

@@ -1,13 +1,13 @@
-ROOT_DIR = '/home/oschung_skcc/git'
-
 import os
 import os.path as osp
 from mmcv import Config
 
+ROOT_DIR = '/home/oschung_skcc/git'
+WORK_DIR = osp.join(ROOT_DIR, 'mymm/kitty_tiny')
+
 cfg = Config.fromfile(osp.join(ROOT_DIR, "mmdetection/configs/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py"))
 # print(cfg.pretty_text)
 
-WORK_DIR = osp.join(ROOT_DIR, 'my/kitty_tiny')
 config_file     = osp.join(WORK_DIR, 'configs/faster_rcnn_r50_fpn_1x_tidy.py')
 checkpoint_file = osp.join(WORK_DIR, 'checkpoints/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth')
 
