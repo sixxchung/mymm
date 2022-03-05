@@ -1,9 +1,11 @@
 # support keypoint as cvat.
+import os
+import sys
+
 import time
 import logging
 from typing import Dict
 import mmcv
-import os
 import cv2
 import pathlib
 import json
@@ -16,9 +18,11 @@ from argparse import ArgumentParser
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
-from mmseg.apis import inference_segmentor, init_segmentor
-from mmpose.apis import inference_top_down_pose_model, init_pose_model, vis_pose_result
+sys.path.append('/home/oschung_skcc/git')
+from mmsegmentation.mmseg.apis import inference_segmentor, init_segmentor
+from mmpose.mmpose.apis import inference_top_down_pose_model, init_pose_model, vis_pose_result
 from mmdet.apis import inference_detector, init_detector
+
 from pycocotools.coco import COCO
 from xml.dom import minidom
 
@@ -26,9 +30,6 @@ from xml.dom import minidom
 det_model = None
 pose_model = None
 seg_model = None
-
-
-
 
 class NumpyEncoder(json.JSONEncoder):
     """ Special json encoder for numpy types """

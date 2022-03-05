@@ -11,9 +11,9 @@ ANN_PREFIX = IMG_PREFIX.replace('image_2', 'label_2')
 
 import sys
 #sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append('/home/oschung_skcc/git/mmdetection')
-from mmdet.datasets.builder import DATASETS
-from mmdet.datasets.custom import CustomDataset
+sys.path.append('/home/oschung_skcc/git')
+from mmdetection.mmdet.datasets.builder import DATASETS
+from mmdetection.mmdet.datasets.custom  import CustomDataset
 
 import mmcv
 import cv2
