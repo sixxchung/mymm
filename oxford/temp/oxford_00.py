@@ -1,25 +1,19 @@
-# !wget https://www.robots.ox.ac.uk/~vgg/data/pets/data/images.tar.gz
-# !wget https://www.robots.ox.ac.uk/~vgg/data/pets/data/annotations.tar.gz
 
-# !tar -xvf images.tar.gz -C /content/data
-# !tar -xvf annotations.tar.gz -C /content/data
-
-# !ls -al ~/git/mmdetection/my/input_image/oxford/images
 
 #from asyncio import subprocess
 import os
 import os.path as osp
 
-myImgPath = '/home/oschung_skcc/git/mmdetection/my/input_image/oxford/images/'
-myAnnoPath= '/home/oschung_skcc/git/mmdetection/my/input_image/oxford/annotations/xmls/'
+#IMG_PREFIX = '/home/oschung_skcc/git/mmdetection/my/input_image/oxford/images/'
+#ANN_PREFIX = '/home/oschung_skcc/git/mmdetection/my/input_image/oxford/annotations/xmls/'
 
-os.listdir(myImgPath)
-onlyfiles = [f for f in os.listdir(myImgPath) if osp.isfile(osp.join(myImgPath, f))]
+os.listdir(IMG_PREFIX)
+onlyfiles = [f for f in os.listdir(IMG_PREFIX) if osp.isfile(osp.join(IMG_PREFIX, f))]
 onlyfiles.sort()
 onlyfiles[0:110]
 
-imgPath = '/home/oschung_skcc/git/mmdetection/data/oxford/images/'
-annoPath= '/home/oschung_skcc/git/mmdetection/data/oxford/annotations/' 
+IMG_PREFIX = '/home/oschung_skcc/git/mmdetection/data/oxford/images/'
+ANN_PREFIX = '/home/oschung_skcc/git/mmdetection/data/oxford/annotations/' 
 
 #######
 # import  re
@@ -36,13 +30,13 @@ annoPath= '/home/oschung_skcc/git/mmdetection/data/oxford/annotations/'
 # cd ~/git/mmdetection/data/oxford
 # ln -s  /home/oschung_skcc/git/mmdetection/my/input_image/oxford/images  images
 # ln -s  /home/oschung_skcc/git/mmdetection/my/input_image/oxford/annotations/xmls annotations
-# os.makedirs(imgPath, exist_ok=True)
-# cmd = 'ln -s '+myImgPath+' '+imgPath
+# os.makedirs(IMG_PREFIX, exist_ok=True)
+# cmd = 'ln -s '+IMG_PREFIX+' '+IMG_PREFIX
 # os.system(cmd)
 ########
 
 
-image_file = osp.join(imgPath,'yorkshire_terrier_189.jpg')
+image_file = osp.join(IMG_PREFIX,'yorkshire_terrier_189.jpg')
 #image_file = osp.realpath(image_file)
 from IPython.display import display, Image
 display(Image(image_file))
@@ -54,7 +48,7 @@ plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
 
 '/home/oschung_skcc/git/mmdetection/my/input_image/oxford/annotations/xmls/yorkshire_terrier_96.xml'
 
-xml_file =  osp.join(myAnnoPath+'yorkshire_terrier_189.xml')
+xml_file =  osp.join(ANN_PREFIX+'yorkshire_terrier_189.xml')
 
 from bs4 import BeautifulSoup
 bs = BeautifulSoup(open(xml_file), 'xml')
@@ -62,11 +56,11 @@ pretty_xml = bs.prettify()
 print(pretty_xml)
 
 ###########################################################################
-metaMyTrain = '/home/oschung_skcc/git/mmdetection/my/input_image/oxford/annotations/trainval.txt'
-metaMyTest  = '/home/oschung_skcc/git/mmdetection/my/input_image/oxford/annotations/test.txt'
+metaTrain0 = '/home/oschung_skcc/git/mmdetection/my/input_image/oxford/annotations/trainval.txt'
+metaTest0  = '/home/oschung_skcc/git/mmdetection/my/input_image/oxford/annotations/test.txt'
 
 import pandas as pd
-pet_df = pd.read_csv(metaMyTrain, sep=' ', header=None, names=['img_name', 'class_id', 'etc1', 'etc2'])
+pet_df = pd.read_csv(metaTrain0, sep=' ', header=None, names=['img_name', 'class_id', 'etc1', 'etc2'])
 pet_df['class_name'] = pet_df['img_name'].apply(lambda x: x[:x.rfind('_')])
 pet_df.head()
 # pet_df['class_id'].value_counts()
@@ -91,7 +85,7 @@ print( open(metaTrain, 'r').read() )
 
 
 ##################################################
-import glob
+#import glob
 import xml.etree.ElementTree as ET
 # annotation xml 파일 파싱해서 bbox정보 추출
 def get_bboxes_from_xml_test(xml_file):

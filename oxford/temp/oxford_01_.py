@@ -13,12 +13,12 @@ import os
 import os.path as osp
 import xml.etree.ElementTree as ET
 
-baseDirectory = '/home/oschung_skcc/git/mmdetection/data/oxford/' 
-imgDirectory = osp.join(baseDirectory, 'images/')
-annoDirectory= osp.join(baseDirectory, 'annotations/') 
+DATA_ROOT = '/home/oschung_skcc/git/mmdetection/data/oxford/' 
+IMG_PREFIX = osp.join(DATA_ROOT, 'images/')
+ANN_PREFIX= osp.join(DATA_ROOT, 'annotations/') 
 
-metaTrain = osp.join(baseDirectory, 'train.txt')
-metaTest  = osp.join(baseDirectory, 'test.txt') 
+metaTrain = osp.join(DATA_ROOT, 'train.txt')
+metaTest  = osp.join(DATA_ROOT, 'test.txt') 
 
 
 pet_df = pd.read_csv(metaTrain, sep=' ', header=None, names=['img_name'])
@@ -29,7 +29,7 @@ len(PET_CLASSES)
 # annotation xml 파일 파싱해서 bbox정보 추출
 def get_bboxes_from_xml(xmlFileName):
   print(xmlFileName)
-  annoXmlPath = osp.join(annoDirectory, xmlFileName)
+  annoXmlPath = osp.join(ANN_PREFIX, xmlFileName)
   tree = ET.parse(annoXmlPath)
   root = tree.getroot()
 
@@ -71,9 +71,9 @@ class PetDataset(CustomDataset):
         data_infos = []       # 포맷 중립 데이터를 담을 list 객체
         for image_id in image_list:
             imgFileName = f'{image_id}.jpg'
-            imgPath = osp.join(self.img_prefix, imgFileName)
+            IMG_PREFIX = osp.join(self.img_prefix, imgFileName)
             
-            image = cv2.imread(imgPath)
+            image = cv2.imread(IMG_PREFIX)
             height, width = image.shape[:2]
             data_info = {
                 'filename': imgFileName,
@@ -87,6 +87,8 @@ class PetDataset(CustomDataset):
             if not osp.exists(annoXmlPath):
                 continue
             if os.stat(annoXmlPath).st_size==0:
+                continue
+            if os.stat(annoXmlPath).st_size==0:
                 continue     
 
             gt_bboxes = []
@@ -94,7 +96,9 @@ class PetDataset(CustomDataset):
             gt_bboxes_ignore = []
             gt_labels_ignore = []
 
-            bbox_names, bboxes = get_bboxes_from_xml(xmlFileName) 
+            bbox_names, bboxes = get_bboxes_from_xml(xmlFileName)
+            
+             
             for bbox_name, bbox in zip(bbox_names, bboxes):
                 # bbox_name이 만약 클래스명에 해당 되면, gt_bboxes와 gt_labels에 추가, 
                 #                           그렇지 않으면 gt_bboxes_ignore, gt_labels_ignore에 추가

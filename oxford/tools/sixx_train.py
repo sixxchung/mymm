@@ -1,14 +1,14 @@
-import copy
+ROOT_DIR = '/home/oschung_skcc/git'
+
 import os
 import os.path as osp
+WORK_DIR = os.path.dirname( os.path.dirname(os.path.realpath(__file__)) )
+# WORK_DIR = osp.join(ROOT_DIR, 'mymm/oxford')
 
-ROOT_DIR = '/home/oschung_skcc/git'
-WORK_DIR = osp.join(ROOT_DIR, 'mymm/kitty_tiny')
-# $ pwd
-# /home/oschung_skcc/git/mmdetection/my/kitty_tiny
-# $ python tools/sixx_train.py configs/faster_rcnn_r50_fpn_1x_tidy.py 
+# /home/oschung_skcc/git/mymm/oxford
+# $ python tools/sixx_train.py configs/faster_rcnn_r50_fpn_1x_oxford.py
+
 import sixx_middle_dataset
-
 # -----------------------------------------------------------------------------
 # Copyright (c) OpenMMLab. All rights reserved.
 import argparse
@@ -29,8 +29,6 @@ from mmdet.datasets import build_dataset
 from mmdet.models   import build_detector
 
 from mmdet.utils    import collect_env, get_root_logger, setup_multi_processes
-
-
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a detector')
@@ -188,8 +186,6 @@ def main():
     model.init_weights()
     # add an attribute for visualization convenience
     model.CLASSES = datasets[0].CLASSES
-
-
 
     train_detector( model, datasets, cfg,
         distributed=distributed,

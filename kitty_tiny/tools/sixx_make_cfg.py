@@ -1,13 +1,13 @@
+ROOT_DIR = '/home/oschung_skcc/git'
+
 import os
 import os.path as osp
+WORK_DIR = osp.dirname( osp.dirname(osp.realpath(__file__)) )
+#WORK_DIR = osp.join(ROOT_DIR, 'mymm/kitty_tiny')
+
 from mmcv import Config
-
-ROOT_DIR = '/home/oschung_skcc/git'
-WORK_DIR = osp.join(ROOT_DIR, 'mymm/kitty_tiny')
-
 cfg = Config.fromfile(osp.join(ROOT_DIR, "mmdetection/configs/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py"))
 # print(cfg.pretty_text)
-
 config_file     = osp.join(WORK_DIR, 'configs/faster_rcnn_r50_fpn_1x_tidy.py')
 checkpoint_file = osp.join(WORK_DIR, 'checkpoints/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth')
 
@@ -23,6 +23,7 @@ from mmdet.apis import set_random_seed
 cfg.dataset_type = 'KittyTinyDataset'       # 'CocoDataset' 
 cfg.data_root = WORK_DIR                    # 'data/coco/'
 
+###---sixx---:: DATA 
 # train, val, test dataset에 대한 
 # type, WORK_DIR, ann_file, img_prefix 환경 파라미터 수정. 
 cfg.data.train.type = 'KittyTinyDataset'             # 'CocoDataset' 
@@ -40,7 +41,13 @@ cfg.data.test.data_root = WORK_DIR
 cfg.data.test.ann_file = 'data/valid.txt'
 cfg.data.test.img_prefix = 'data/image_2'
 
+###---sixx--::: train_pipeline
+
+###---sixx--::: test_pipeline
+
+###---sixx---:: MODEL 
 cfg.model.roi_head.bbox_head.num_classes = 4         #  class의 80 갯수 수정. 
+
 cfg.load_from = checkpoint_file                      # pretrained 모델 (경로확인)
 cfg.work_dir = osp.join(WORK_DIR, 'tutorial_exps')   # 학습 weight 파일로 로그를 저장하기 위한 디렉토리 설정. 
 
@@ -71,4 +78,5 @@ with open (config_file, 'w') as f:
 
 import datetime
 print(f"---created custom config file by sixx on {datetime.datetime.now()}")
+print(f"{cfg.dataset_type} :: {osp.relpath(config_file)}")
 

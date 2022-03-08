@@ -68,10 +68,10 @@ class PetDataset_imsi():
       # self.img_prefix는 images 가 입력될 것임. 
       image_id = image_list[6]
       imgFilename = f'{image_id}.jpg'
-      imgPath = osp.join(img_prefix, imgFilename)
+      IMG_PREFIX = osp.join(img_prefix, imgFilename)
       
       # 원본 이미지의 너비, 높이를 image를 직접 로드하여 구함. 
-      image = cv2.imread(imgPath)
+      image = cv2.imread(IMG_PREFIX)
       height, width = image.shape[:2]
       # 개별 image의 annotation 정보 저장용 Dict 생성. key값 filename에는 image의 파일명만 들어감(디렉토리는 제외)
       # 영상에는 data_info = {'filename': filename 으로 되어 있으나 filename은 image 파일명만 들어가는게 맞음. 

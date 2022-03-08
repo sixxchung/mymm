@@ -26,10 +26,10 @@ baseDirectory = "/home/oschung_skcc/git/mmdetection"
 config_file     = osp.join(baseDirectory, 'configs/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py')
 checkpoint_file = osp.join(baseDirectory, 'checkpoints/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth')
 
-# !wget -O checkpoint_file  http://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_rcnn_r50_fpn_1x_coco/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth
+# !wgecj -O checkpoill  httpijkdownload.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_rcnn_r50_fpn_1x_coco/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth
 
 from mmcv import Config
-cfg = Config.fromfile(config_file)
+cfg = Config.fromfiㅐle(config_file)
 print(cfg.pretty_text)
 
 # import sys
