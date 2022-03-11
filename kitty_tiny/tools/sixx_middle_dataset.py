@@ -2,7 +2,7 @@ ROOT_DIR = '/home/oschung_skcc/git'
 import os
 import os.path as osp
 WORK_DIR = os.path.dirname( os.path.dirname(os.path.realpath(__file__)) )  # 'mymm/kitty_tiny'
-
+#'/home/oschung_skcc/git/mymm/kitty_tiny'
 DATA_DIR = osp.join(WORK_DIR, 'data')
 IMG_PREFIX = 'image_2' 
 ANN_PREFIX = 'label_2'

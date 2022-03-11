@@ -8,9 +8,8 @@ WORK_DIR = os.path.dirname( os.path.dirname(os.path.realpath(__file__)) )
 # /home/oschung_skcc/git/mymm/oxford
 # $ python tools/sixx_train.py configs/faster_rcnn_r50_fpn_1x_oxford.py
 
-import sixx_middle_dataset
+import tools.sixx_middle_dataset
 # -----------------------------------------------------------------------------
-# Copyright (c) OpenMMLab. All rights reserved.
 import argparse
 import time
 import warnings
